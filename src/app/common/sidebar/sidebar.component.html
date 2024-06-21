@@ -1,24 +1,14 @@
-<div
-    class="sidebar-area bg-white active"
-    [ngClass]="{'active': isSidebarToggled}"
-    [class.component-dark-theme]="themeService.isDark()"
-    [class.dark-sidebar]="themeService.isSidebarDark()"
-    [class.right-sidebar]="themeService.isRightSidebar()"
-    [class.hide-sidebar]="themeService.isHideSidebar()"
-    [class.card-borderd-theme]="themeService.isCardBorder()"
-    [class.rtl-enabled]="themeService.isRTLEnabled()"
->
+<div class="sidebar-area bg-white active" [ngClass]="{'active': isSidebarToggled}"
+    [class.component-dark-theme]="themeService.isDark()" [class.dark-sidebar]="themeService.isSidebarDark()"
+    [class.right-sidebar]="themeService.isRightSidebar()" [class.hide-sidebar]="themeService.isHideSidebar()"
+    [class.card-borderd-theme]="themeService.isCardBorder()" [class.rtl-enabled]="themeService.isRTLEnabled()">
     <div class="logo bg-white">
         <a routerLink="/" class="d-flex align-items-center">
             <img src="assets/images/logo-icon.svg" alt="logo-icon">
             <span class="fw-semibold">PDS</span>
         </a>
     </div>
-    <div
-        (click)="toggle()"
-        class="burger-menu"
-        [ngClass]="{'active': isSidebarToggled}"
-    >
+    <div (click)="toggle()" class="burger-menu" [ngClass]="{'active': isSidebarToggled}">
         <span class="top-bar"></span>
         <span class="middle-bar"></span>
         <span class="bottom-bar"></span>
@@ -46,32 +36,62 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                                    class="sidemenu-link">
                                     E-Commerce
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/crm" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/crm" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                                    class="sidemenu-link">
                                     CRM
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/project-management" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/project-management" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Project Management
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/lms" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/lms" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                                    class="sidemenu-link">
                                     LMS
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/help-desk" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/help-desk" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Help Desk <span class="daxa-badge">Hot</span>
                                 </a>
                             </li>
                         </ul>
                     </mat-expansion-panel>
+                    <a routerLink="/calendar" class="sidebar-menu-link" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">
+                            calendar_today
+                        </i>
+                        <span class="title">
+                            Calendar
+                        </span>
+                    </a>
+                    <a routerLink="/todo-list" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">
+                            ballot
+                        </i>
+                        <span class="title">
+                            Todo-List
+                        </span>
+                    </a>
+                    <a routerLink="/tokens" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">
+                            ballot
+                        </i>
+                        <span class="title">
+                            Tokens
+                        </span>
+                    </a>
                 </mat-accordion>
             </div>
         </div>

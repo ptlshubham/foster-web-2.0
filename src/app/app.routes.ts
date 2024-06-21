@@ -14,6 +14,8 @@ import { LockScreenComponent } from './authentication/lock-screen/lock-screen.co
 import { LogoutComponent } from './authentication/logout/logout.component';
 import { ConfirmEmailComponent } from './authentication/confirm-email/confirm-email.component';
 import { InternalErrorComponent } from './common/internal-error/internal-error.component';
+import { TodoListComponent } from './common/pages/todo-list/todo-list.component';
+import { TokensComponent } from './common/pages/tokens/tokens.component';
 
 export const routes: Routes = [
     {path: '', component: EcommerceComponent},
@@ -21,6 +23,9 @@ export const routes: Routes = [
     {path: 'project-management', component: ProjectManagementComponent},
     {path: 'lms', component: LmsComponent},
     {path: 'help-desk', component: HelpDeskComponent},
+    {path: 'todo-list', component: TodoListComponent},
+    {path: 'tokens', component: TokensComponent},
+
     {
         path: 'authentication',
         component: AuthenticationComponent,
