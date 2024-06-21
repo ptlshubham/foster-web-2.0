@@ -16,6 +16,9 @@ import { ConfirmEmailComponent } from './authentication/confirm-email/confirm-em
 import { InternalErrorComponent } from './common/internal-error/internal-error.component';
 import { TodoListComponent } from './common/pages/todo-list/todo-list.component';
 import { TokensComponent } from './common/pages/tokens/tokens.component';
+import { CesComponent } from './common/pages/ces/ces.component';
+import { MonthlyReportComponent } from './common/pages/monthly-report/monthly-report.component';
+import { CalendarComponent } from './common/pages/calendar/calendar.component';
 
 export const routes: Routes = [
     {path: '', component: EcommerceComponent},
@@ -25,7 +28,10 @@ export const routes: Routes = [
     {path: 'help-desk', component: HelpDeskComponent},
     {path: 'todo-list', component: TodoListComponent},
     {path: 'tokens', component: TokensComponent},
-
+    {path: 'ces', component: CesComponent},
+    {path: 'monthly-report', component: MonthlyReportComponent},
+    {path: 'calendar', component: CalendarComponent},
+    
     {
         path: 'authentication',
         component: AuthenticationComponent,

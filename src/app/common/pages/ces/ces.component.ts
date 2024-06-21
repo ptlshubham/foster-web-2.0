@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -12,15 +11,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { SidebarComponent } from '../../sidebar/sidebar.component';
+import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
 import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
-  selector: 'app-tokens',
+  selector: 'app-ces',
   standalone: true,
-  imports: [
-    MatCardModule, 
+  imports: [MatCardModule, 
     MatMenuModule, 
     MatButtonModule,
     RouterLink, 
@@ -33,13 +32,11 @@ import { SelectionModel } from '@angular/cdk/collections';
     MatDatepickerModule, 
     MatNativeDateModule, 
     SidebarComponent, 
-    MatPaginatorModule,
-    RouterLinkActive],
-
-  templateUrl: './tokens.component.html',
-  styleUrl: './tokens.component.scss'
+    MatPaginatorModule],
+  templateUrl: './ces.component.html',
+  styleUrl: './ces.component.scss'
 })
-export class TokensComponent {
+export class CesComponent {
   displayedColumns: string[] = ['select', 'title', 'description', 'date'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
@@ -65,6 +62,7 @@ toggleAllRows() {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.title + 1}`;
 }
+
   isToggled = false;
 
   constructor(
@@ -74,17 +72,6 @@ toggleAllRows() {
           this.isToggled = isToggled;
       });
   }
-  
-    // Dark Mode
-    toggleTheme() {
-        this.themeService.toggleTheme();
-    }
-
-    // RTL Mode
-    toggleRTLEnabledTheme() {
-        this.themeService.toggleRTLEnabledTheme();
-    }
-
 }
 const ELEMENT_DATA: PeriodicElement[] = [
   {
