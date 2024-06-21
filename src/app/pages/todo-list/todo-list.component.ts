@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -12,7 +11,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { WorkingScheduleComponent } from '../../../dashboard/project-management/working-schedule/working-schedule.component';
+import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import { WorkingScheduleComponent } from '../../dashboard/project-management/working-schedule/working-schedule.component';
 
 @Component({
   selector: 'app-todo-list',

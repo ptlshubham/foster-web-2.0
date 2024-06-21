@@ -14,10 +14,11 @@ import { LockScreenComponent } from './authentication/lock-screen/lock-screen.co
 import { LogoutComponent } from './authentication/logout/logout.component';
 import { ConfirmEmailComponent } from './authentication/confirm-email/confirm-email.component';
 import { InternalErrorComponent } from './common/internal-error/internal-error.component';
-import { TodoListComponent } from './common/pages/todo-list/todo-list.component';
-import { TokensComponent } from './common/pages/tokens/tokens.component';
-import { CesComponent } from './common/pages/ces/ces.component';
-import { CalendarComponent } from './common/pages/calendar/calendar.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
+import { CesComponent } from './pages/ces/ces.component';
+import { TodoListComponent } from './pages/todo-list/todo-list.component';
+import { TokensComponent } from './pages/tokens/tokens.component';
+
 
 export const routes: Routes = [
     {path: '', component: EcommerceComponent},

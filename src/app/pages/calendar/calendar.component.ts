@@ -3,9 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink } from '@angular/router';
-import { WorkingScheduleComponent } from '../../../dashboard/project-management/working-schedule/working-schedule.component';
 import { CalendarOptions } from '@fullcalendar/core';
-import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -13,6 +11,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { WorkingScheduleComponent } from '../../dashboard/project-management/working-schedule/working-schedule.component';
+import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 
 @Component({
   selector: 'app-calendar',
