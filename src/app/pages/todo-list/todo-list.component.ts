@@ -33,12 +33,14 @@ import { WorkingScheduleComponent } from '../../dashboard/project-management/wor
   styleUrl: './todo-list.component.scss'
 })
 export class TodoListComponent {
+    // Mat Calendar
     selected: Date | null;
 
+    // Popup Trigger
     classApplied = false;
     toggleClass() {
-      this.classApplied = !this.classApplied;
-  }
+        this.classApplied = !this.classApplied;
+    }
       // Calendar
       calendarOptions: CalendarOptions = {
         initialView: 'dayGridMonth',
