@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ProjectsOverviewComponent } from './projects-overview/projects-overview.component';
-import { ProjectsRoadmapComponent } from './projects-roadmap/projects-roadmap.component';
 import { AllProjectsComponent } from './all-projects/all-projects.component';
 import { ProjectsProgressComponent } from './projects-progress/projects-progress.component';
 import { WorkingScheduleComponent } from './working-schedule/working-schedule.component';
@@ -14,7 +13,7 @@ import { RouterLink } from '@angular/router';
 @Component({
     selector: 'app-project-management',
     standalone: true,
-    imports: [ProjectsOverviewComponent, ProjectsRoadmapComponent, AllProjectsComponent, ProjectsProgressComponent, WorkingScheduleComponent, ProjectsAnalysisComponent, ChatProjectsUserComponent, ToDoListComponent, ActiveProjectComponent, TeamMembersComponent, RouterLink],
+    imports: [ProjectsOverviewComponent, AllProjectsComponent, ProjectsProgressComponent, WorkingScheduleComponent, ProjectsAnalysisComponent, ChatProjectsUserComponent, ToDoListComponent, ActiveProjectComponent, TeamMembersComponent, RouterLink],
     templateUrl: './project-management.component.html',
     styleUrl: './project-management.component.scss'
 })
