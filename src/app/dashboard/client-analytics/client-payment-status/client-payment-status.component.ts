@@ -68,7 +68,7 @@ export class ClientPaymentStatusComponent {
                 }
             },
             colors: [
-                "#0f79f3", "#00cae3", "#ffb264"
+                "#0e8f99", "#00cae3", "#ffb264"
             ],
             fill: {
                 opacity: 1

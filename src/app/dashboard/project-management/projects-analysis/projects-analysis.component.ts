@@ -79,7 +79,7 @@ export class ProjectsAnalysisComponent {
                 enabled: false
             },
             colors: [
-                "#00cae3", "#0f79f3", "#796df6"
+                "#00cae3", "#0e8f99", "#796df6"
             ],
             stroke: {
                 width: 2,
