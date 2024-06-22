@@ -15,6 +15,7 @@ import { CalendarComponent } from './pages/calendar/calendar.component';
 import { CesComponent } from './pages/ces/ces.component';
 import { TodoListComponent } from './pages/todo-list/todo-list.component';
 import { TokensComponent } from './pages/tokens/tokens.component';
+import { HelpDeskComponent } from './pages/help-desk/help-desk.component';
 
 
 export const routes: Routes = [
@@ -24,6 +25,7 @@ export const routes: Routes = [
     {path: 'tokens', component: TokensComponent},
     {path: 'ces', component: CesComponent},
     {path: 'calendar', component: CalendarComponent},
+    {path: 'help-desk', component: HelpDeskComponent},
     
     {
         path: 'authentication',
