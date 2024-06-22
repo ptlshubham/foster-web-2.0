@@ -6,14 +6,12 @@ import { WorkingScheduleComponent } from './working-schedule/working-schedule.co
 import { ProjectsAnalysisComponent } from './projects-analysis/projects-analysis.component';
 import { ChatProjectsUserComponent } from './chat-projects-user/chat-projects-user.component';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
-import { ActiveProjectComponent } from './active-project/active-project.component';
-import { TeamMembersComponent } from './team-members/team-members.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-project-management',
     standalone: true,
-    imports: [ProjectsOverviewComponent, AllProjectsComponent, ProjectsProgressComponent, WorkingScheduleComponent, ProjectsAnalysisComponent, ChatProjectsUserComponent, ToDoListComponent, ActiveProjectComponent, TeamMembersComponent, RouterLink],
+    imports: [ProjectsOverviewComponent, AllProjectsComponent, ProjectsProgressComponent, WorkingScheduleComponent, ProjectsAnalysisComponent, ChatProjectsUserComponent, ToDoListComponent, RouterLink],
     templateUrl: './project-management.component.html',
     styleUrl: './project-management.component.scss'
 })
