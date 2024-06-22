@@ -6,7 +6,6 @@ import { RouterLink } from '@angular/router';
 @Component({
     selector: 'app-projects-overview',
     standalone: true,
-    // imports: [MatCardModule, TotalProjectsComponent, ActiveProjectsComponent, CompletedProjectsComponent, TotalMembersComponent, RouterLink],
     imports: [MatCardModule, RouterLink],
     templateUrl: './projects-overview.component.html',
     styleUrl: './projects-overview.component.scss'

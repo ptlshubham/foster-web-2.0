@@ -15,15 +15,19 @@ import { CesComponent } from './pages/ces/ces.component';
 import { TodoListComponent } from './pages/todo-list/todo-list.component';
 import { TokensComponent } from './pages/tokens/tokens.component';
 import { HelpDeskComponent } from './pages/help-desk/help-desk.component';
+import { DailyWorkComponent } from './pages/daily-work/daily-work.component';
+import { MonthlyReportComponent } from './pages/monthly-report/monthly-report.component';
 
 
 export const routes: Routes = [
     {path: 'client-analytics', component: ClientAnalyticsComponent},
-    {path: 'project-management', component: ProjectManagementComponent},
+    {path: '', component: ProjectManagementComponent},
     {path: 'todo-list', component: TodoListComponent},
     {path: 'tokens', component: TokensComponent},
     {path: 'ces', component: CesComponent},
+    {path: 'monthly-report', component: MonthlyReportComponent},
     {path: 'help-desk', component: HelpDeskComponent},
+    {path: 'daily-work', component: DailyWorkComponent},
     
     {
         path: 'authentication',
