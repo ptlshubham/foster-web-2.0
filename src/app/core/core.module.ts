@@ -6,6 +6,8 @@ import { EventService } from './services/event.service';
 import { HomeService } from './services/home.services';
 import { OrganizationService } from './services/organization.service';
 import { TokensService } from './services/tokens.service';
+import { AuthInterceptor } from './guards/auth-http-interceptor';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
@@ -20,7 +22,9 @@ import { TokensService } from './services/tokens.service';
     EventService,
     HomeService,
     OrganizationService,
-    TokensService
+    TokensService,
+    AuthInterceptor,
+    AuthGuard
   ]
 })
 export class CoreModule { }
