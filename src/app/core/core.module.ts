@@ -10,6 +10,7 @@ import { AuthInterceptor } from './guards/auth-http-interceptor';
 import { AuthGuard } from './guards/auth.guard';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, MY_DATE_FORMATS } from './services/date-formats';
+import { FacebookService } from './services/facebook.service';
 
 
 
@@ -28,7 +29,8 @@ import { AppDateAdapter, MY_DATE_FORMATS } from './services/date-formats';
     AuthInterceptor,
     AuthGuard,
     { provide: DateAdapter, useClass: AppDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
+    FacebookService
   ]
 })
 export class CoreModule { }

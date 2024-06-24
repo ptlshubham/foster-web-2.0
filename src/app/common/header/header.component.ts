@@ -1,19 +1,25 @@
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ToggleService } from '../sidebar/toggle.service';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [NgClass, MatMenuModule, MatButtonModule, RouterLink, RouterLinkActive],
+    imports: [
+        NgClass,
+        MatMenuModule,
+        MatButtonModule,
+        RouterLink,
+        RouterLinkActive,
+        CommonModule],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
     // isSidebarToggled
     isSidebarToggled = false;
@@ -21,9 +27,14 @@ export class HeaderComponent {
     // isToggled
     isToggled = false;
 
+    company = localStorage.getItem('Company');
+    role: any = localStorage.getItem('Role');
+    adminName = localStorage.getItem('Name');
+    profile = localStorage.getItem('profile');
     constructor(
         private toggleService: ToggleService,
-        public themeService: CustomizerSettingsService
+        public themeService: CustomizerSettingsService,
+        private router: Router
     ) {
         this.toggleService.isSidebarToggled$.subscribe(isSidebarToggled => {
             this.isSidebarToggled = isSidebarToggled;
@@ -37,7 +48,9 @@ export class HeaderComponent {
     toggle() {
         this.toggleService.toggle();
     }
-
+    ngOnInit(): void {
+        
+    }
     // Header Sticky
     isSticky: boolean = false;
     @HostListener('window:scroll', ['$event'])
@@ -83,6 +96,10 @@ export class HeaderComponent {
     // RTL Mode
     toggleRTLEnabledTheme() {
         this.themeService.toggleRTLEnabledTheme();
+    }
+    logout() {
+        localStorage.clear();
+        this.router.navigate(['/authentication/logout']);
     }
 
 }

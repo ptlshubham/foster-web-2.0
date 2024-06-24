@@ -4,8 +4,8 @@
     [class.card-borderd-theme]="themeService.isCardBorder()" [class.rtl-enabled]="themeService.isRTLEnabled()">
     <div class="logo bg-white">
         <a routerLink="/" class="d-flex align-items-center">
-            <img src="assets/images/logo-icon.svg" alt="logo-icon">
-            <span class="fw-semibold">PDS</span>
+            <img src="assets/images/fostericon.svg" height="45" width="45" alt="logo-icon">
+            <span class="fw-semibold">FOSTER</span>
         </a>
     </div>
     <div (click)="toggle()" class="burger-menu" [ngClass]="{'active': isSidebarToggled}">
@@ -30,26 +30,27 @@
                                     Dashboard
                                 </span>
                                 <span class="daxa-badge">
-                                    5
+                                    2
                                 </span>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/" routerLinkActive="active"
-                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                                    class="sidemenu-link">
                                     Project Management
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/client-analytics" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                                    class="sidemenu-link">
+                                <a routerLink="/client-analytics" routerLinkActive="active"
+                                    [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Client Analytics
                                 </a>
                             </li>
                         </ul>
                     </mat-expansion-panel>
-                    <a routerLink="/todo-list" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/todo-list" class="sidebar-menu-link" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             ballot
                         </i>
@@ -57,7 +58,8 @@
                             Todo-List
                         </span>
                     </a>
-                    <a routerLink="/tokens" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/tokens" class="sidebar-menu-link" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             ballot
                         </i>
@@ -65,7 +67,8 @@
                             Tokens
                         </span>
                     </a>
-                    <a routerLink="/ces" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/ces" class="sidebar-menu-link" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             ballot
                         </i>
@@ -73,7 +76,8 @@
                             CES
                         </span>
                     </a>
-                    <a routerLink="/monthly-report" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/monthly-report" class="sidebar-menu-link" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             ballot
                         </i>
@@ -81,20 +85,31 @@
                             Monthly-Report
                         </span>
                     </a>
-                    <a routerLink="/daily-work" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/daily-work" class="sidebar-menu-link" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             ballot
                         </i>
                         <span class="title">
                             Daily-Work
                         </span>
-                    </a>                    
-                    <a routerLink="/help-desk" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    </a>
+                    <a routerLink="/help-desk" class="sidebar-menu-link" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             support
                         </i>
                         <span class="title">
                             Help-Desk
+                        </span>
+                    </a>
+                    <a routerLink="/social-media" class="sidebar-menu-link" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">
+                            support
+                        </i>
+                        <span class="title">
+                           Social Media
                         </span>
                     </a>
                 </mat-accordion>
