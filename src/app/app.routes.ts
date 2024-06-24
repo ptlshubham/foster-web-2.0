@@ -17,6 +17,7 @@ import { TokensComponent } from './pages/tokens/tokens.component';
 import { HelpDeskComponent } from './pages/help-desk/help-desk.component';
 import { DailyWorkComponent } from './pages/daily-work/daily-work.component';
 import { MonthlyReportComponent } from './pages/monthly-report/monthly-report.component';
+import { SocialMediaComponent } from './pages/social-media/social-media.component';
 
 
 export const routes: Routes = [
@@ -28,7 +29,7 @@ export const routes: Routes = [
     {path: 'monthly-report', component: MonthlyReportComponent},
     {path: 'help-desk', component: HelpDeskComponent},
     {path: 'daily-work', component: DailyWorkComponent},
-    
+    {path: 'social-media', component: SocialMediaComponent},
     {
         path: 'authentication',
         component: AuthenticationComponent,

@@ -8,6 +8,7 @@ import { OrganizationService } from './services/organization.service';
 import { TokensService } from './services/tokens.service';
 import { AuthInterceptor } from './guards/auth-http-interceptor';
 import { AuthGuard } from './guards/auth.guard';
+import { FacebookService } from './services/facebook.service';
 
 
 
@@ -24,7 +25,8 @@ import { AuthGuard } from './guards/auth.guard';
     OrganizationService,
     TokensService,
     AuthInterceptor,
-    AuthGuard
+    AuthGuard,
+    FacebookService
   ]
 })
 export class CoreModule { }
