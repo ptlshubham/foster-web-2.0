@@ -42,7 +42,7 @@ export class ProjectsProgressComponent {
         this.chartOptions = {
             series: [60, 30, 10],
             chart: {
-                height: 450,
+                height: 400,
                 type: "donut"
             },
             labels: [
