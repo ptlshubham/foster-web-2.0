@@ -18,6 +18,7 @@ import { HelpDeskComponent } from './pages/help-desk/help-desk.component';
 import { DailyWorkComponent } from './pages/daily-work/daily-work.component';
 import { MonthlyReportComponent } from './pages/monthly-report/monthly-report.component';
 import { SocialMediaComponent } from './pages/social-media/social-media.component';
+import { MonthlySchedulerComponent } from './pages/monthly-scheduler/monthly-scheduler.component';
 
 
 export const routes: Routes = [
@@ -30,6 +31,7 @@ export const routes: Routes = [
     {path: 'help-desk', component: HelpDeskComponent},
     {path: 'daily-work', component: DailyWorkComponent},
     {path: 'social-media', component: SocialMediaComponent},
+    {path: 'monthly-scheduler', component: MonthlySchedulerComponent},
     {
         path: 'authentication',
         component: AuthenticationComponent,
