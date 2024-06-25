@@ -23,7 +23,7 @@
             [class.component-dark-theme]="themeService.isDark()" [class.rtl-enabled]="themeService.isRTLEnabled()">
             <mat-card-content>
 
-                <a routerLink="/email/compose" class="btn" mat-button>
+                <a class="btn" mat-button (click)="openAddTokenDialog()">
                     Generate Tokens
                 </a>
                 <ul class="sidebar-list pl-0 list-unstyled">
