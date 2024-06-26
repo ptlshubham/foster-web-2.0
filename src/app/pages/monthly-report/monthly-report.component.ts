@@ -26,6 +26,10 @@ export class MonthlyReportComponent {
     this.router.navigate(['/monthly-scheduler']);
   }
 
+  redirectToMonthlyReportCalendar(): void {
+    this.router.navigate(['./monthly-report-calendar']);
+  }
+
   // Dark Mode
   toggleTheme() {
       this.themeService.toggleTheme();
