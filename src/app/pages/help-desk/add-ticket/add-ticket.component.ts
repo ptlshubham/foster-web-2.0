@@ -1,3 +1,70 @@
+// import { Component } from '@angular/core';
+// import { MatCardModule } from '@angular/material/card';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatSelectModule } from '@angular/material/select';
+// import { MatDatepickerModule } from '@angular/material/datepicker';
+// import { CustomizerSettingsService } from '../../../customizer-settings/customizer-settings.service';
+// import { HelpDeskComponent } from "../help-desk.component"
+// import { NgxEditorModule, Editor, Toolbar } from 'ngx-editor';
+
+// @Component({
+//   selector: 'app-add-ticket',
+//   standalone: true,
+//   imports: [MatCardModule, MatFormFieldModule, MatSelectModule, MatDatepickerModule, NgxEditorModule, HelpDeskComponent, ],
+//   templateUrl: './add-ticket.component.html',
+//   styleUrl: './add-ticket.component.scss'
+// })
+// export class AddTicketComponent {
+//   isToggled = false;
+//   classApplied = false;
+//   productTypeSelected = 'option1';
+//   vendorSelected = 'option1';
+//   categorySelected = 'option1';
+
+//   constructor(
+//     public themeService: CustomizerSettingsService
+// ) {
+//     this.themeService.isToggled$.subscribe(isToggled => {
+//         this.isToggled = isToggled;
+//     });
+// }
+
+// editor: Editor;
+// toolbar: Toolbar = [
+//     ['bold', 'italic'],
+//     ['underline', 'strike'],
+//     ['code', 'blockquote'],
+//     ['ordered_list', 'bullet_list'],
+//     [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+//     ['link', 'image'],
+//     ['text_color', 'background_color'],
+//     ['align_left', 'align_center', 'align_right', 'align_justify'],
+// ]; 
+
+//   // Dark Mode
+//   toggleTheme() {
+//       this.themeService.toggleTheme();
+//   }
+
+//   // RTL Mode
+//   toggleRTLEnabledTheme() {
+//       this.themeService.toggleRTLEnabledTheme();
+//   }  
+
+//   toggleClass(){
+//     this.classApplied = !this.classApplied;
+//   }
+
+//   ngOnInit(): void {
+//     this.editor = new Editor();
+//   }
+
+//   // make sure to destory the editor
+//   ngOnDestroy(): void {
+//       this.editor.destroy();
+//   }  
+// }
+
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -35,10 +102,10 @@ import { NgxEditorModule, Editor, Toolbar } from 'ngx-editor';
     MatPaginatorModule,
     RouterLinkActive,
     NgxEditorModule],
-  templateUrl: './add-token.component.html',
-  styleUrl: './add-token.component.scss'
+  templateUrl: './add-ticket.component.html',
+  styleUrl: './add-ticket.component.scss'
 })
-export class AddTokenComponent {
+export class AddTicketComponent {
   classApplied = false;
   isToggled = false;
   categorySelected = 'option1';

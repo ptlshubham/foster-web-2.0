@@ -1,11 +1,11 @@
 <div class="add-new-event-popup" [class.active]="classApplied"
 [class.rtl-enabled]="themeService.isRTLEnabled()">
-<div class="popup-dialog">
+<div class="popup-dialog" style="width: 80%">
     <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
         <mat-card-header>
             <mat-card-title>
                 <h5 class="mt-0 mb-0">
-                    Add New Event
+                    Generate Token
                 </h5>
             </mat-card-title>
             <mat-card-subtitle>
@@ -15,42 +15,173 @@
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <label class="main-label d-block lh-1 text-black">
-                Event Name
-            </label>
-            <mat-form-field>
-                <mat-label>
-                    Event name
-                </mat-label>
-                <input matInput placeholder="E.g. Project Daxa milestone 1 due next week.">
-            </mat-form-field>
-            <label class="main-label d-block lh-1 text-black">
-                Event Date
-            </label>
-            <mat-form-field class="date">
-                <mat-label>
-                    Choose a date
-                </mat-label>
-                <input matInput [matDatepicker]="eventDate">
-                <mat-datepicker-toggle matIconSuffix [for]="eventDate"></mat-datepicker-toggle>
-                <mat-datepicker #eventDate></mat-datepicker>
-            </mat-form-field>
-            <label class="main-label d-block lh-1 text-black">
-                Event Time
-            </label>
-            <mat-form-field>
-                <mat-label>
-                    Event time
-                </mat-label>
-                <input matInput placeholder="E.g. 12:00 AM">
-            </mat-form-field>
-            <div class="btn-box">
-                <button mat-button (click)="toggleClass()">
-                    Cancel
-                </button>
-                <button mat-button>
-                    Create
-                </button>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">
+                                Select Client
+                            </label>
+                            <mat-form-field>
+                                <mat-label>
+                                    Select
+                                </mat-label>
+                                <mat-select [(value)]="categorySelected">
+                                    <mat-option value="option1">
+                                        Watch
+                                    </mat-option>
+                                    <mat-option value="option2">
+                                        Mobile
+                                    </mat-option>
+                                    <mat-option value="option3">
+                                        Laptop
+                                    </mat-option>
+                                    <mat-option value="option4">
+                                        Headphone
+                                    </mat-option>
+                                    <mat-option value="option5">
+                                        Shoe
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">
+                                Select Manager
+                            </label>
+                            <mat-form-field>
+                                <mat-label>
+                                    Select
+                                </mat-label>
+                                <mat-select multiple>
+                                    <mat-option value="option1">Watch</mat-option>
+                                    <mat-option value="option2">Electronics</mat-option>
+                                    <mat-option value="option3">Sports</mat-option>
+                                    <mat-option value="option4">Fashion</mat-option>
+                                    <mat-option value="option5">Electronics</mat-option>
+                                    <mat-option value="option6">Jewellery</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">
+                                Select Designer
+                            </label>
+                            <mat-form-field>
+                                <mat-label>
+                                    Select
+                                </mat-label>
+                                <mat-select multiple>
+                                    <mat-option value="option1">Watch</mat-option>
+                                    <mat-option value="option2">Electronics</mat-option>
+                                    <mat-option value="option3">Sports</mat-option>
+                                    <mat-option value="option4">Fashion</mat-option>
+                                    <mat-option value="option5">Electronics</mat-option>
+                                    <mat-option value="option6">Jewellery</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">
+                                Select Label
+                            </label>
+                            <mat-form-field>
+                                <mat-label>
+                                    Select
+                                </mat-label>
+                                <mat-select [(value)]="productTypeSelected">
+                                    <mat-option value="option1">
+                                        Digital Product
+                                    </mat-option>
+                                    <mat-option value="option2">
+                                        Physical Product
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">
+                                Delivery Date
+                            </label>
+                            <mat-form-field>
+                                <mat-label>
+                                    Choose a date
+                                </mat-label>
+                                <input matInput [matDatepicker]="availableDate">
+                                <mat-datepicker-toggle matIconSuffix [for]="availableDate"></mat-datepicker-toggle>
+                                <mat-datepicker #availableDate></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">
+                                Created By
+                            </label>
+                            <mat-form-field>
+                                <mat-label>
+                                    Select
+                                </mat-label>
+                                <mat-select [(value)]="vendorSelected">
+                                    <mat-option value="option1">
+                                        Dennis Matthews
+                                    </mat-option>
+                                    <mat-option value="option2">
+                                        Susan Rader
+                                    </mat-option>
+                                    <mat-option value="option3">
+                                        Douglas Harvey
+                                    </mat-option>
+                                    <mat-option value="option4">
+                                        John Valdez
+                                    </mat-option>
+                                    <mat-option value="option5">
+                                        Kathryn Turner
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-12">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">
+                                Title
+                            </label>
+                            <mat-form-field>
+                                <mat-label>
+                                    SKU
+                                </mat-label>
+                                <input matInput value="ABC-12345">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="mb-25">
+                            <label class="main-label d-block lh-1 text-black">
+                                Description Details
+                            </label>
+                            <div class="NgxEditor__Wrapper">
+                                <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
+                                <ngx-editor [editor]="editor" [placeholder]="'Type here...'"></ngx-editor>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button mat-raised-button class="daxa" style="margin-left: 1205px">Submit</button>
             </div>
         </mat-card-content>
     </mat-card>
