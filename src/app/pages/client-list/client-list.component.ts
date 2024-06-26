@@ -19,6 +19,7 @@ import { Validators, FormGroup, FormBuilder, ReactiveFormsModule } from '@angula
 import { CompanyService } from '../../core/services/company.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-client-list',
@@ -40,7 +41,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     ReactiveFormsModule,
     CoreModule,
     HttpClientModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.scss'
@@ -61,6 +63,7 @@ export class ClientListComponent implements OnInit {
   comapanyRole: any = localStorage.getItem('Role');
   designerlist: any = [];
   managerlist: any = []
+  loading: boolean = true; // Initialize as true to show loader initially
 
   constructor(
     private fb: FormBuilder,
@@ -165,7 +168,12 @@ export class ClientListComponent implements OnInit {
     dataToProcess.forEach((element: any, index: number) => {
       element.index = index + 1;
     });
-    this.dataSource.data = dataToProcess;
+  
+    setTimeout(() => {
+      // Replace this with actual data fetching logic
+      this.dataSource.data = dataToProcess;
+      this.loading = false; // Set loading to false once data is fetched
+    }, 2000);
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

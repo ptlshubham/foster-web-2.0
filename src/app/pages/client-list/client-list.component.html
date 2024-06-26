@@ -43,8 +43,9 @@
     </mat-card-header>
     <mat-card-content>
         <div class="to-do-list-table">
-            <div class="table-responsive">
+            <div class="table-responsive" *ngIf="!loading; else loader">
                 <table mat-table [dataSource]="dataSource">
+                    <!-- Table content here -->
                     <ng-container matColumnDef="#">
                         <th mat-header-cell *matHeaderCellDef>#</th>
                         <td mat-cell *matCellDef="let element">{{element.index}}</td>
@@ -161,8 +162,14 @@
             <mat-paginator [length]="dataSource.data.length" [pageSize]="25" [pageSizeOptions]="[25, 50, 75]"
                 showFirstLastButtons></mat-paginator>
         </div>
+        <ng-template #loader>
+            <div class="loader-container">
+                <mat-spinner></mat-spinner>
+            </div>
+        </ng-template>
     </mat-card-content>
 </mat-card>
+
 
 <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block"
     [class.rtl-enabled]="themeService.isRTLEnabled()" *ngIf="isOpen==true">
