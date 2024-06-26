@@ -30,20 +30,24 @@
                             }
                         }
                         .daxa-badge {
-                            color: var(--daxaColor);
-                            background: rgba(15, 121, 243, 0.10);
+                            color: white;
+                            background: var(--daxaColor);
 
                             &.in-progress {
-                                color: var(--warningColor);
-                                background: rgba(241, 179, 28, 0.10);
+                                color: white;
+                                background: var(--daxaColor);
                             }
                             &.pending {
-                                color: var(--successColor);
-                                background: rgba(46, 212, 126, 0.10);
+                                color: white;
+                                background: var(--warningColor);
                             }
                             &.not-started {
-                                color: var(--dangerColor);
-                                background: rgba(231, 76, 60, 0.10);
+                                color: white;
+                                background: var(--dangerColor);
+                            }
+                            &.secondary{
+                                color: white;
+                                background: #74788d;
                             }
                         }
                     }

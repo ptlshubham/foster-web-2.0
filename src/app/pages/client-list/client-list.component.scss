@@ -6,7 +6,7 @@
                 margin: {
                     left: -20px;
                     right: -20px;
-                };
+                }
                 .to-do-list-table {
                     .mat-mdc-table {
                         .mat-mdc-header-cell {
@@ -21,7 +21,7 @@
                             padding: {
                                 top: 21.5px;
                                 bottom: 21.5px;
-                            };
+                            }
                             &:last-child {
                                 text-align: right;
                             }
@@ -30,21 +30,28 @@
                             }
                         }
                         .daxa-badge {
-                            color: var(--daxaColor);
-                            background: rgba(15, 121, 243, 0.10);
+                            color: white;
+                            background: var(--daxaColor);
 
                             &.in-progress {
-                                color: var(--warningColor);
-                                background: rgba(241, 179, 28, 0.10);
+                                color: white;
+                                background: var(--daxaColor);
                             }
                             &.pending {
-                                color: var(--successColor);
-                                background: rgba(46, 212, 126, 0.10);
+                                color: white;
+                                background: var(--warningColor);
                             }
                             &.not-started {
-                                color: var(--dangerColor);
-                                background: rgba(231, 76, 60, 0.10);
+                                color: white;
+                                background: var(--dangerColor);
                             }
+                            &.secondary{
+                                color: white;
+                                background: #74788d;
+                            }
+                        }
+                        .pr-2 {
+                            margin-right: 2px !important;
                         }
                     }
                 }
@@ -53,7 +60,7 @@
                         top: 20px;
                         left: 20px;
                         right: 20px;
-                    };
+                    }
                     .mat-mdc-button {
                         padding: 0;
                         height: auto;
@@ -61,7 +68,7 @@
                         font: {
                             size: var(--fontSize) !important;
                             weight: normal;
-                        };
+                        }
                         &:not(:disabled) {
                             color: var(--daxaColor);
                         }
@@ -80,7 +87,7 @@
                                     padding: {
                                         right: 20px;
                                         left: 0;
-                                    };
+                                    }
                                 }
                             }
                             .mat-mdc-cell {
@@ -91,12 +98,41 @@
                                     padding: {
                                         right: 20px;
                                         left: 0;
-                                    };
+                                    }
                                 }
                             }
                         }
                     }
                 }
+            }
+            .user-info {
+                .image {
+                    width: 50px;
+                    line-height: 0.01;
+
+                    img {
+                        border-radius: 50%;
+                    }
+                }
+                .info {
+                    margin-left: 12px;
+
+                    .title {
+                        margin-top: 0;
+                        font-size: 18px;
+                    }
+                    span {
+                        font-size: 14px;
+                        margin-top: 4px;
+                    }
+                }
+            }
+            .mat-mdc-paginator {
+                padding: {
+                    top: 15px;
+                    left: 20px;
+                    right: 20px;
+                };
             }
         }
     }
@@ -112,16 +148,16 @@
         opacity: 0;
         z-index: 999;
         position: fixed;
-        transition: .3s;
+        transition: 0.3s;
         visibility: hidden;
         background-color: rgba(0, 0, 0, 0.5);
         overflow: {
             x: hidden;
             y: auto;
-        };
+        }
         .popup-dialog {
             display: flex;
-            transition: .3s;
+            transition: 0.3s;
             max-width: 550px;
             align-items: center;
             transform: translate(0, -20px);
@@ -129,7 +165,7 @@
             margin: {
                 left: auto;
                 right: auto;
-            };
+            }
             .daxa-card {
                 width: 100%;
 
@@ -138,12 +174,12 @@
                     margin: {
                         left: -20px;
                         right: -20px;
-                    };
+                    }
                     padding: {
                         left: 20px;
                         right: 20px;
                         bottom: 18px;
-                    };
+                    }
                     .mat-mdc-card-subtitle {
                         .mat-mdc-button {
                             padding: 0;
@@ -200,13 +236,13 @@
                     .mat-mdc-card-content {
                         .btn-box {
                             text-align: left;
-    
+
                             .mat-mdc-button {
                                 &:first-child {
                                     margin: {
                                         right: 0;
                                         left: 10px;
-                                    };
+                                    }
                                 }
                             }
                         }
@@ -218,8 +254,7 @@
 }
 
 /* Max width 767px */
-@media only screen and (max-width : 767px) {
-
+@media only screen and (max-width: 767px) {
     // To Do List
     .mat-mdc-card {
         &.daxa-card {
@@ -228,7 +263,7 @@
                     margin: {
                         left: -15px;
                         right: -15px;
-                    };
+                    }
                     .to-do-list-table {
                         .mat-mdc-table {
                             .info {
@@ -253,14 +288,14 @@
                                     &:first-child {
                                         padding: {
                                             right: 15px;
-                                        };
+                                        }
                                     }
                                 }
                                 .mat-mdc-cell {
                                     &:first-child {
                                         padding: {
                                             right: 15px;
-                                        };
+                                        }
                                     }
                                 }
                             }
@@ -293,18 +328,18 @@
         .add-new-task-popup {
             .popup-dialog {
                 max-width: 400px;
-                
+
                 .daxa-card {
                     .mat-mdc-card-header {
                         margin: {
                             left: -15px;
                             right: -15px;
-                        };
+                        }
                         padding: {
                             left: 15px;
                             right: 15px;
                             bottom: 15px;
-                        };
+                        }
                         .mat-mdc-card-subtitle {
                             .mat-mdc-button {
                                 font-size: 20px !important;
@@ -328,12 +363,10 @@
             }
         }
     }
-
 }
 
 /* Min width 576px to Max width 767px */
-@media only screen and (min-width : 576px) and (max-width : 767px) {
-
+@media only screen and (min-width: 576px) and (max-width: 767px) {
     // To Do List
     .mat-mdc-card {
         &.daxa-card {
@@ -342,7 +375,7 @@
                     margin: {
                         left: -20px;
                         right: -20px;
-                    };
+                    }
                 }
                 &.rtl-enabled {
                     .mat-mdc-card-content {
@@ -352,14 +385,14 @@
                                     &:first-child {
                                         padding: {
                                             right: 20px;
-                                        };
+                                        }
                                     }
                                 }
                                 .mat-mdc-cell {
                                     &:first-child {
                                         padding: {
                                             right: 20px;
-                                        };
+                                        }
                                     }
                                 }
                             }
@@ -369,12 +402,10 @@
             }
         }
     }
-
 }
 
 /* Min width 768px to Max width 991px */
-@media only screen and (min-width : 768px) and (max-width : 991px) {
-
+@media only screen and (min-width: 768px) and (max-width: 991px) {
     // To Do List
     .mat-mdc-card {
         &.daxa-card {
@@ -389,14 +420,19 @@
             }
         }
     }
-
 }
 
 /* Min width 992px to Max width 1199px */
-@media only screen and (min-width : 992px) and (max-width : 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
 
 /* Min width 1200px to Max width 1399px */
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+}
 
 /* Min width 1600px */
-@media only screen and (min-width: 1600px) {}
+@media only screen and (min-width: 1600px) {
+}
+.mr-5{
+    margin-right: 5px;
+}

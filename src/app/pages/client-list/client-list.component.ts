@@ -1,5 +1,5 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -16,6 +16,9 @@ import { CustomizerSettingsService } from '../../customizer-settings/customizer-
 import { MatIcon } from '@angular/material/icon';
 import { CoreModule } from '../../core/core.module';
 import { Validators, FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { CompanyService } from '../../core/services/company.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-client-list',
@@ -26,7 +29,6 @@ import { Validators, FormGroup, FormBuilder, ReactiveFormsModule } from '@angula
     RouterLink,
     MatTableModule,
     CommonModule,
-    CoreModule,
     MatCheckboxModule,
     MatTooltipModule,
     MatFormFieldModule,
@@ -35,39 +37,42 @@ import { Validators, FormGroup, FormBuilder, ReactiveFormsModule } from '@angula
     MatDatepickerModule,
     MatNativeDateModule,
     MatIcon,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    CoreModule,
+    HttpClientModule,
+    MatPaginatorModule
+  ],
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.scss'
 })
-export class ClientListComponent {
+export class ClientListComponent implements OnInit {
 
-  displayedColumns: string[] = ['taskID', 'Name', 'businesstpye', 'Designer', 'Manager', 'post', 'Reel',  'Story' , 'Extra' , 'Media', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['#', 'Name', 'businesstype', 'Manager', 'Designer', 'post', 'reel', 'story', 'extra', 'media', 'action'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource = new MatTableDataSource<any>([]);
 
-
-  // Search Filter
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-
-
-
-  // Popup Trigger
-  classApplied = false;
-  toggleClass() {
-    this.classApplied = !this.classApplied;
-  }
-
-  // isToggled
   isToggled = false;
+  hide = true;
+  authForm: FormGroup;
+  isOpen: boolean = false;
+
+  roleWiseData: any = [];
+  clientsData: any = [];
+  comapanyRole: any = localStorage.getItem('Role');
+  designerlist: any = [];
+  managerlist: any = []
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    public themeService: CustomizerSettingsService
+    public themeService: CustomizerSettingsService,
+    private companyService: CompanyService
   ) {
+    this.getStaffDetails();
+    this.getClientsDetails();
+  }
+
+  ngOnInit(): void {
     this.authForm = this.fb.group({
       name: ['', Validators.required],
       business: ['', Validators.required],
@@ -81,228 +86,106 @@ export class ClientListComponent {
       yt: ['', Validators.required],
       in: ['', Validators.required,],
       password: ['', [Validators.required, Validators.minLength(8)]],
-  });
+    });
     this.themeService.isToggled$.subscribe(isToggled => {
       this.isToggled = isToggled;
     });
   }
+  getStaffDetails() {
+    this.companyService.getAllEmployeeDetailsData().subscribe((res: any) => {
+      this.designerlist = res.filter((employee: any) => employee.role === 'Designer');
+      this.managerlist = res.filter((employee: any) => employee.role === 'Manager');
+    })
+  }
+  openAddClients() {
+    this.isOpen = true;
+    // this.isUpdate = false;
+    // this.clientModel = {};
+    // this.validationForm.markAsUntouched();
+    // this.clientlogo = null;
+    // this.imageUrl = 'assets/images/file-upload-image.jpg';
+  }
+  BackToTable() {
+    this.isOpen = false;
+    // this.isUpdate = false;
+    // this.validationForm.markAsUntouched();
+    this.getClientsDetails();
+  }
+  getClientsDetails() {
+    this.companyService.getAllClientDetailsData().subscribe((res: any) => {
+      let pendingRequests = res.length;
 
-   // Password Hide
-   hide = true;
+      if (pendingRequests === 0) {
+        this.clientsData = res;
+        this.getEmployeeWiseData();
+        return;
+      }
+      res.forEach((element: any, index: number) => {
+        const mediaArray = element.media.split(',').map((item: any) => item.trim());
+        res[index].mediaArray = mediaArray;
 
-   // Form
-   authForm: FormGroup;
-   onSubmit() {
-       if (this.authForm.valid) {
-           this.router.navigate(['/']);
-       } else {
-           console.log('Form is invalid. Please check the fields.');
-       }
-   }
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    taskID: '#951',
-    Name: 'Hotel management system',
-    businesstpye: 'Shawn Kennedy',
-    Manager: 'Shawn',
-    Designer: 'Shawn',
-    post: '15 ',
-    Reel: '10',
-    Story: '10',
-    Extra: '10',
-    Media: {
-      inProgress: 'In Progress',
-      // pending: 'Pending',
-      // completed: 'Completed',
-      // notStarted: 'Not Started',
-    },
-    action: {
-      view: 'visibility',
-      delete: 'delete'
+        this.companyService.getAssignedEmpDetailsById(element.id).subscribe((data: any) => {
+          res[index].assignedDesigners = data.filter((employee: any) => employee.role === 'Designer');
+          res[index].assignedManagers = data.filter((employee: any) => employee.role === 'Manager');
+          pendingRequests--;
+
+          if (pendingRequests === 0) {
+            this.clientsData = res;
+            this.getEmployeeWiseData();
+          }
+        });
+      });
+    });
+  }
+
+  getEmployeeWiseData() {
+    const eid = Number(localStorage.getItem('Eid')); // Convert eid to a number
+    this.roleWiseData = []; // Initialize or clear the roleWiseData array
+
+    // Helper function to filter clients by assigned roles
+    const filterByRole = (roleKey: string) => {
+      this.clientsData.forEach((element: any) => {
+        element[roleKey].forEach((assigned: any) => {
+          if (assigned.empid === eid) {
+            this.roleWiseData.push(element);
+          }
+        });
+      });
+    };
+
+    // Determine the role and filter accordingly
+    if (this.comapanyRole === 'Designer') {
+      filterByRole('assignedDesigners');
+    } else if (this.comapanyRole === 'Manager' || this.comapanyRole === 'SubAdmin') {
+      filterByRole('assignedManagers');
     }
-  },
-  {
-    taskID: '#587',
-    Name: 'Send proposal to APR Ltd',
-    businesstpye: 'Roberto Cruz',
-    Manager: 'Shawn',
-    Designer: 'Shawn',
-    post: '14 ',
-    Reel: '10',
-    Story: '10',
-    Extra: '10',
-    Media: {
-      // inProgress: 'In Progress',
-      pending: 'Pending',
-      // completed: 'Completed',
-      // notStarted: 'Not Started',
-    },
-    action: {
-      view: 'visibility',
-      delete: 'delete'
-    }
-  },
-  {
-    taskID: '#618',
-    Name: 'Python upgrade',
-    businesstpye: 'Juli Johnson',
-    Manager: 'Shawn',
-    Designer: 'Shawn',
-    post: '13 ',
-    Reel: '10',
-    Story: '10',
-    Extra: '10',
-    Media: {
-      // inProgress: 'In Progress',
-      // pending: 'Pending',
-      completed: 'Completed',
-      // notStarted: 'Not Started',
-    },
-    action: {
-      view: 'visibility',
-      delete: 'delete'
-    }
-  },
-  {
-    taskID: '#367',
-    Name: 'Schedule meeting with Daxa',
-    businesstpye: 'Catalina Engles',
-    Manager: 'Shawn',
-    Designer: 'Shawn',
-    post: '12 ',
-    Reel: '10',
-    Story: '10',
-    Extra: '10',
-    Media: {
-      // inProgress: 'In Progress',
-      // pending: 'Pending',
-      // completed: 'Completed',
-      notStarted: 'Not Started',
-    },
-    action: {
-      view: 'visibility',
-      delete: 'delete'
-    }
-  },
-  {
-    taskID: '#761',
-    Name: 'Engineering lite touch',
-    businesstpye: 'Louis Nagle',
-    Manager: 'Shawn',
-    Designer: 'Shawn',
-    post: '11 ',
-    Reel: '10',
-    Story: '10',
-    Extra: '10',
-    Media: {
-      inProgress: 'In Progress',
-      // pending: 'Pending',
-      // completed: 'Completed',
-      // notStarted: 'Not Started',
-    },
-    action: {
-      view: 'visibility',
-      delete: 'delete'
-    }
-  },
-  {
-    taskID: '#431',
-    Name: 'Refund bill payment',
-    businesstpye: 'Michael Marquez',
-    Manager: 'Shawn',
-    Designer: 'Shawn',
-    post: '10 ',
-    Reel: '10',
-    Story: '10',
-    Extra: '10',
-    Media: {
-      // inProgress: 'In Progress',
-      // pending: 'Pending',
-      // completed: 'Completed',
-      notStarted: 'Not Started',
-    },
-    action: {
-      view: 'visibility',
-      delete: 'delete'
-    }
-  },
-  {
-    taskID: '#421',
-    Name: 'Public beta release',
-    businesstpye: 'James Andy',
-    Manager: 'Shawn',
-    Designer: 'Shawn',
-    post: '09 ',
-    Reel: '10',
-    Story: '10',
-    Extra: '10',
-    Media: {
-      inProgress: 'In Progress',
-      // pending: 'Pending',
-      // completed: 'Completed',
-      // notStarted: 'Not Started',
-    },
-    action: {
-      view: 'visibility',
-      delete: 'delete'
-    }
-  },
-  {
-    taskID: '#624',
-    Name: 'Fix platform errors',
-    businesstpye: 'Alina Smith',
-    Manager: 'Shawn',
-    Designer: 'Shawn',
-    post: '08 ',
-    Reel: '10',
-    Story: '10',
-    Extra: '10',
-    Media: {
-      // inProgress: 'In Progress',
-      // pending: 'Pending',
-      completed: 'Completed',
-      // notStarted: 'Not Started',
-    },
-    action: {
-      view: 'visibility',
-      delete: 'delete'
-    }
-  },
-  {
-    taskID: '#513',
-    Name: 'Launch our mobile app',
-    businesstpye: 'David Warner',
-    Manager: 'Shawn',
-    Designer: 'Shawn',
-    post: '07',
-    Reel: '10',
-    Story: '10',
-    Extra: '10',
-    Media: {
-      // inProgress: 'In Progress',
-      pending: 'Pending',
-      // completed: 'Completed',
-      // notStarted: 'Not Started',
-    },
-    action: {
-      view: 'visibility',
-      delete: 'delete'
+
+    // Assign index to each element and set collection size
+    const dataToProcess = this.roleWiseData.length ? this.roleWiseData : this.clientsData;
+    dataToProcess.forEach((element: any, index: number) => {
+      element.index = index + 1;
+    });
+    this.dataSource.data = dataToProcess;
+  }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+  // Search Filter
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  getRemainingDesignersTooltip(designers: any) {
+    return designers.map((designer: any) => designer.name).join(', ');
+  }
+  getRemainingManagersTooltip(managers: any) {
+    return managers.map((manager: any) => manager.name).join(', ');
+  }
+  onSubmit() {
+    if (this.authForm.valid) {
+      this.router.navigate(['/']);
+    } else {
+      console.log('Form is invalid. Please check the fields.');
     }
   }
-];
-
-export interface PeriodicElement {
-  Name: string;
-  taskID: string;
-  businesstpye: string;
-  Designer: string;
-  Manager: string;
-  post: string;
-  Reel: string;
-  Story: string;
-  Extra: string;
-  Media: any;
-  action: any;
-
 }
