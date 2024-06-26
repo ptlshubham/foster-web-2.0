@@ -21,6 +21,8 @@ import { SocialMediaComponent } from './pages/social-media/social-media.componen
 import { ClientListComponent } from './pages/client-list/client-list.component';
 import { MonthlySchedulerComponent } from './pages/monthly-scheduler/monthly-scheduler.component';
 import { MonthlyReportCalendarComponent } from './pages/monthly-report-calendar/monthly-report-calendar.component';
+import { EmployeeListComponent } from './pages/employee-list/employee-list.component';
+import { AddEmployeeComponent } from './pages/employee-list/add-employee/add-employee.component';
 
 
 export const routes: Routes = [
@@ -34,7 +36,8 @@ export const routes: Routes = [
     {path: 'daily-work', component: DailyWorkComponent},
     {path: 'social-media', component: SocialMediaComponent},
     {path: 'client-list', component: ClientListComponent},
-
+    {path: 'employee-list', component: EmployeeListComponent},
+    {path: 'employee-list/add-employee', component: AddEmployeeComponent},
     {path: 'monthly-scheduler', component: MonthlySchedulerComponent},
     {path: 'monthly-report-calendar', component: MonthlyReportCalendarComponent},
     {
