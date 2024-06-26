@@ -15,32 +15,35 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
 import { SidebarComponent } from '../../common/sidebar/sidebar.component';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AddTokenComponent } from './add-token/add-token.component';
 
 @Component({
-  selector: 'app-tokens',
-  standalone: true,
-  imports: [
-    MatCardModule, 
-    MatMenuModule, 
-    MatButtonModule,
-    RouterLink, 
-    MatTableModule, 
-    MatCheckboxModule, 
-    MatTooltipModule, 
-    MatFormFieldModule, 
-    MatInputModule, 
-    MatSelectModule, 
-    MatDatepickerModule, 
-    MatNativeDateModule, 
-    SidebarComponent, 
-    MatPaginatorModule,
-    RouterLinkActive],
+    selector: 'app-tokens',
+    standalone: true,
+    imports: [
+        MatCardModule,
+        MatMenuModule,
+        MatButtonModule,
+        RouterLink,
+        MatTableModule,
+        MatCheckboxModule,
+        MatTooltipModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        SidebarComponent,
+        MatPaginatorModule,
+        RouterLinkActive,
+        MatDialogModule],
 
-  templateUrl: './tokens.component.html',
-  styleUrl: './tokens.component.scss'
+    templateUrl: './tokens.component.html',
+    styleUrl: './tokens.component.scss'
 })
 export class TokensComponent {
- 
+
     displayedColumns: string[] = ['select', 'title', 'description', 'date'];
     dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
     selection = new SelectionModel<PeriodicElement>(true, []);
@@ -79,7 +82,8 @@ export class TokensComponent {
     isToggled = false;
 
     constructor(
-        public themeService: CustomizerSettingsService
+        public themeService: CustomizerSettingsService,
+        private dialog: MatDialog
     ) {
         this.themeService.isToggled$.subscribe(isToggled => {
             this.isToggled = isToggled;
@@ -95,7 +99,14 @@ export class TokensComponent {
     toggleRTLEnabledTheme() {
         this.themeService.toggleRTLEnabledTheme();
     }
+    openAddTokenDialog(): void {
+        const dialogRef = this.dialog.open(AddTokenComponent);
 
+        // You can also handle the dialog result if needed
+        dialogRef.afterClosed().subscribe(result => {
+            // Handle dialog close event if needed
+        });
+    }
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [

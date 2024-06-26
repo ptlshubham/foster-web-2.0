@@ -1,0 +1,116 @@
+<!-- <div class="add-new-event-popup" [class.active]="classApplied"
+[class.rtl-enabled]="themeService.isRTLEnabled()">
+<div class="popup-dialog" style="width: 400px;">
+    <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
+        <mat-card-header>
+            <mat-card-title>
+                <h5 class="mt-0 mb-0">
+                    Generate Ticket
+                </h5>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <button mat-button (click)="toggleClass()">
+                    <i class="ri-close-fill"></i>
+                </button>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-25">
+                    <label class="main-label d-block lh-1 text-black">
+                        SKU
+                    </label>
+                    <mat-form-field>
+                        <mat-label>
+                            SKU
+                        </mat-label>
+                        <input matInput value="ABC-12345">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+    </mat-card>
+</div>
+</div> -->
+
+<div class="add-new-event-popup" [class.active]="classApplied" [class.rtl-enabled]="themeService.isRTLEnabled()">
+    <div class="popup-dialog" style="width: 60%">
+        <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
+            <mat-card-header>
+                <mat-card-title>
+                    <h5 class="mt-0 mb-0">
+                        Generate Ticket
+                    </h5>
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <button mat-button (click)="toggleClass()">
+                        <i class="ri-close-fill"></i>
+                    </button>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-12">
+                            <label class="main-label d-block lh-1 text-black">
+                                Title
+                            </label>
+                            <mat-form-field>
+                                <mat-label>
+                                    Enter Title
+                                </mat-label>
+                                <input matInput value="">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-6">
+                            <label class="main-label d-block lh-1 text-black">
+                                Select Employee
+                            </label>
+                            <mat-form-field>
+                                <mat-label>
+                                    Select
+                                </mat-label>
+                                <mat-select [(value)]="categorySelected">
+                                    <mat-option value="option1">
+                                        Employee 1
+                                    </mat-option>
+                                    <mat-option value="option2">
+                                        Employee 2
+                                    </mat-option>
+                                    <mat-option value="option3">
+                                        Employee 3
+                                    </mat-option>
+                                    <mat-option value="option4">
+                                        Employee 4
+                                    </mat-option>
+                                    <mat-option value="option5">
+                                        Employee 5
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-12">
+                            <div class="mb-25">
+                                <label class="main-label d-block lh-1 text-black">
+                                    Description Details
+                                </label>
+                                <div class="NgxEditor__Wrapper">
+                                    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
+                                    <ngx-editor [editor]="editor" [placeholder]="'Type here...'"></ngx-editor>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button mat-raised-button class="daxa" style="float: right;">Submit</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

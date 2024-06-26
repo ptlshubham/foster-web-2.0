@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-lg-3 col-xxl-3">
+        <mat-card
+        class="daxa-card top-customers-card mb-25 border-radius bg-white border-none d-block"
+        [class.rtl-enabled]="themeService.isRTLEnabled()"
+    >
+        <mat-card-header>
+            <mat-card-title>
+                <h5 class="mt-0 mb-0">
+                    Top Customers
+                </h5>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="top-customers-table">
+                <div class="table-responsive">
+                    <table mat-table [dataSource]="dataUserSource">
+    
+                        <!-- User Column -->
+                        <ng-container matColumnDef="user">
+                            <td mat-cell *matCellDef="let element">
+                                <div class="user-info d-flex align-items-center">
+                                    <div class="image">
+                                        <img src="assets/images/users/user1.jpg" alt="user-image">
+                                    </div>
+                                    <div class="info">
+                                        <span class="title text-black d-block">
+                                            {{element.user.name}}
+                                        </span>
+                                        <span class="d-block text-body">
+                                            {{element.user.customerID}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                        </ng-container>
+    
+                        <!-- Profile Column -->
+                        <ng-container matColumnDef="viewProfileLink">
+                            <td mat-cell *matCellDef="let element">
+                                <a class="text-body text-daxa-hover" routerLink="/{{element.viewProfileLink}}">
+                                    View Profile
+                                </a>
+                            </td>
+                        </ng-container>
+    
+                        <tr mat-row *matRowDef="let row; columns: displayedUserColumns;"></tr>
+    
+                    </table>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    </div>
+    <div class="col-xxxl-9 col-lg-8">
+        <mat-card class="daxa-card calendar-card mb-25 border-radius bg-white border-none d-block"
+            [class.component-dark-theme]="themeService.isDark()" [class.rtl-enabled]="themeService.isRTLEnabled()">
+            <mat-card-content>
+                <full-calendar [options]="calendarOptions"></full-calendar>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

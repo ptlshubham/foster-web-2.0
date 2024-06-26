@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 import { RouterLink } from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-monthly-report',
@@ -15,11 +15,19 @@ export class MonthlyReportComponent {
   isToggled = false;
 
   constructor(
-      public themeService: CustomizerSettingsService
+      public themeService: CustomizerSettingsService,
+      private router: Router
   ) {
       this.themeService.isToggled$.subscribe(isToggled => {
           this.isToggled = isToggled;
       });
+  }
+  redirectToScheduler(): void {
+    this.router.navigate(['/monthly-scheduler']);
+  }
+
+  redirectToMonthlyReportCalendar(): void {
+    this.router.navigate(['./monthly-report-calendar']);
   }
 
   // Dark Mode

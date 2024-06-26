@@ -19,6 +19,8 @@ import { DailyWorkComponent } from './pages/daily-work/daily-work.component';
 import { MonthlyReportComponent } from './pages/monthly-report/monthly-report.component';
 import { SocialMediaComponent } from './pages/social-media/social-media.component';
 import { ClientListComponent } from './pages/client-list/client-list.component';
+import { MonthlySchedulerComponent } from './pages/monthly-scheduler/monthly-scheduler.component';
+import { MonthlyReportCalendarComponent } from './pages/monthly-report-calendar/monthly-report-calendar.component';
 
 
 export const routes: Routes = [
@@ -33,6 +35,8 @@ export const routes: Routes = [
     {path: 'social-media', component: SocialMediaComponent},
     {path: 'client-list', component: ClientListComponent},
 
+    {path: 'monthly-scheduler', component: MonthlySchedulerComponent},
+    {path: 'monthly-report-calendar', component: MonthlyReportCalendarComponent},
     {
         path: 'authentication',
         component: AuthenticationComponent,

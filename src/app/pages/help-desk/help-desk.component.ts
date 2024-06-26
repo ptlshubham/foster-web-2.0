@@ -15,6 +15,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
 import { SidebarComponent } from '../../common/sidebar/sidebar.component';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AddTicketComponent } from './add-ticket/add-ticket.component';
 
 @Component({
   selector: 'app-tokens',
@@ -34,7 +36,8 @@ import { CustomizerSettingsService } from '../../customizer-settings/customizer-
     MatNativeDateModule, 
     SidebarComponent, 
     MatPaginatorModule,
-    RouterLinkActive],
+    RouterLinkActive,
+    MatDialogModule,],
 
   templateUrl: './help-desk.component.html',
   styleUrl: './help-desk.component.scss'
@@ -79,6 +82,7 @@ export class HelpDeskComponent {
     isToggled = false;
 
     constructor(
+        private dialog: MatDialog,
         public themeService: CustomizerSettingsService
     ) {
         this.themeService.isToggled$.subscribe(isToggled => {
@@ -94,6 +98,15 @@ export class HelpDeskComponent {
     // RTL Mode
     toggleRTLEnabledTheme() {
         this.themeService.toggleRTLEnabledTheme();
+    }
+
+    openAddTicketDialog(): void{
+        const dialogRef = this.dialog.open(AddTicketComponent);
+
+        // You can also handle the dialog result if needed
+        dialogRef.afterClosed().subscribe(result => {
+            // Handle dialog close event if needed
+        });
     }
 
 }
