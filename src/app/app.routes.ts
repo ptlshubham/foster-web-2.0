@@ -25,6 +25,7 @@ import { EmployeeListComponent } from './pages/employee-list/employee-list.compo
 import { AddEmployeeComponent } from './pages/employee-list/add-employee/add-employee.component';
 import { DesignerSheetComponent } from './pages/client-list/designer-sheet/designer-sheet.component';
 import { TaskManagementComponent } from './pages/task-management/task-management.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 
 export const routes: Routes = [
@@ -44,6 +45,7 @@ export const routes: Routes = [
     {path: 'monthly-scheduler', component: MonthlySchedulerComponent},
     {path: 'monthly-report-calendar', component: MonthlyReportCalendarComponent},
     {path: 'task-management', component: TaskManagementComponent},
+    {path: 'settings', component: SettingsComponent},
 
     {
         path: 'authentication',
