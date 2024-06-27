@@ -65,16 +65,17 @@ export class DesignerSheetComponent {
   }
   getClientsDetailsForSheet() {
     this.companyService.getAllDesignerSheetList().subscribe((data: any) => {
-      data.forEach((row: any, index: number) => {
-        row.index = index + 1;
-        row.clients = row.clientnames.split(',').map((client: string) => client.trim());
-      });
+      const processedData = data.map((row: any, index: number) => ({
+        ...row,
+        index: index + 1,
+        clients: row.clientnames.split(',').map((client: string) => client.trim())
+      }));
+  
       setTimeout(() => {
-        // Replace this with actual data fetching logic
-        this.dataSource.data = data;
-        debugger
+        this.dataSource.data = processedData;
         this.loading = false; // Set loading to false once data is fetched
       }, 2000);
     });
   }
+  
 }
