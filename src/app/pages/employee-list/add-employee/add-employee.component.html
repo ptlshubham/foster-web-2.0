@@ -6,97 +6,115 @@
             </h5>
         </mat-card-title>
         <mat-card-subtitle>
-            <button mat-flat-button extended color="warn" style="float: right; margin-top: 0;" (click)="redirectToEmployeeList()">
+            <button mat-flat-button extended color="warn" style="float: right; margin-top: 0;"
+                (click)="redirectToEmployeeList()">
                 <mat-icon>arrow_back</mat-icon>
                 Back
             </button>
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content style="height: 520px;">
-        <div class="row">
-            <div class="col-md-6 col-xxl-4">
-                <h5>Role</h5>
-                <mat-form-field>
-                    <mat-select>
-                        <mat-option value="Steak">Manager</mat-option>
-                        <mat-option value="Pizza">Designer</mat-option>
-                        <mat-option value="Tacos">Developer</mat-option>
-                        <mat-option value="Tacos">SubAdmin</mat-option>
-                    </mat-select>
-                </mat-form-field>
+        <form [formGroup]="authForm">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 col-xxl-4">
+                        <h5>Role</h5>
+                        <mat-form-field>
+                            <mat-label>Enter Role</mat-label>
+                            <mat-select>
+                                <mat-option value="Steak">Manager</mat-option>
+                                <mat-option value="Pizza">Designer</mat-option>
+                                <mat-option value="Tacos">Developer</mat-option>
+                                <mat-option value="Tacos">SubAdmin</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-xxl-4">
+                        <h5>Name</h5>
+                        <mat-form-field>
+                            <mat-label>Enter Name</mat-label>
+                            <input matInput formControlName="">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-xxl-4">
+                        <h5>Contact Number</h5>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter Contact Number
+                            </mat-label>
+                            <input matInput placeholder="E.g. +123 452183">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row " style="margin-top: 20px;">
+                    <div class="col-md-6 col-xxl-4">
+                        <h5>Email Address</h5>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter email address
+                            </mat-label>
+                            <input matInput type="email">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-xxl-4">
+                        <h5>Password</h5>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter your password
+                            </mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" id="password"
+                                formControlName="password">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <span class="material-symbols-outlined">
+                                    {{hide ? 'visibility_off' : 'visibility'}}
+                                </span>
+                            </button>
+                        </mat-form-field>
+                        <div class="error text-danger"
+                            *ngIf="authForm.get('password')!.hasError('required') && authForm.get('password')!.touched">
+                            Password is required.
+                        </div>
+                        <div class="error text-danger"
+                            *ngIf="authForm.get('password')!.hasError('minlength') && authForm.get('password')!.touched">
+                            Password must be at least 8 characters long.
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xxl-4">
+                        <h5>Birthday Date</h5>
+                        <mat-form-field appearance="fill">
+                            <mat-label>MM/DD/YYYY</mat-label>
+                            <input matInput [matDatepicker]="picker2">
+                            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <h5>Upload Image</h5>
+                    <div class="image position-relative">
+                        <img src="assets/images/profile.jpg" class="rounded-circle" alt="profile-image">
+                        <button mat-mini-fab matTooltip="Daxa" class="daxa edit-btn"
+                            aria-label="Example mini fab with a heart icon"
+                            style="position: relative; left: -40px; top: -10px;"
+                            [matMenuTriggerFor]="editProfilePhotoMenu">
+                            <mat-icon>photo_camera</mat-icon>
+                        </button>
+                        <mat-menu #editProfilePhotoMenu="matMenu" class="card-header-menu" xPosition="after">
+                            <button mat-menu-item>
+                                See Photo
+                            </button>
+                            <button mat-menu-item>
+                                Upload Photo
+                            </button>
+                            <button mat-menu-item>
+                                Remove
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 col-xxl-4">
-                <h5>Name</h5>
-                <mat-form-field>
-                    <mat-label>Enter Name</mat-label>
-                    <input matInput>
-                </mat-form-field>
-            </div>
-            <div class="col-md-6 col-xxl-4">
-                <h5>Contact Number</h5>
-                <mat-form-field>
-                    <mat-label>
-                        Enter Contact Number
-                    </mat-label>
-                    <input matInput placeholder="E.g. +123 452183">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 20px;">
-            <div class="col-md-6 col-xxl-4">
-                <h5>Email Address</h5>
-                <mat-form-field>
-                    <mat-label>
-                        Enter email address
-                    </mat-label>
-                    <input matInput type="email">
-                </mat-form-field>
-            </div>
-            <div class="col-md-6 col-xxl-4">
-                <h5>Password</h5>
-                <mat-form-field>
-                    <mat-label>
-                        Enter your password
-                    </mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" id="password" formControlName="password">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide">
-                        <span class="material-symbols-outlined">
-                            {{hide ? 'visibility_off' : 'visibility'}}
-                        </span>
-                    </button>
-                </mat-form-field>
-            </div>
-            <div class="col-md-6 col-xxl-4">
-                <h5>Birthday Date</h5>
-                <mat-form-field appearance="fill">
-                    <mat-label>MM/DD/YYYY</mat-label>
-                    <input matInput [matDatepicker]="picker2">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 20px;">
-            <h5>Upload Image</h5>
-            <div class="image position-relative">
-                <img src="assets/images/profile.jpg" class="rounded-circle" alt="profile-image">
-                <button mat-mini-fab matTooltip="Daxa" class="daxa edit-btn" aria-label="Example mini fab with a heart icon" style="position: relative; left: -40px; top: -10px;" [matMenuTriggerFor]="editProfilePhotoMenu">
-                    <mat-icon>photo_camera</mat-icon>
-                </button>
-                <mat-menu #editProfilePhotoMenu="matMenu" class="card-header-menu" xPosition="after">
-                    <button mat-menu-item>
-                        See Photo
-                    </button>
-                    <button mat-menu-item>
-                        Upload Photo
-                    </button>
-                    <button mat-menu-item>
-                        Remove
-                    </button>
-                </mat-menu>
-            </div>
-        </div>
+        </form>
         <button mat-raised-button class="daxa" style="float: right; margin-bottom: 20px;">Submit</button>
     </mat-card-content>
 </mat-card>

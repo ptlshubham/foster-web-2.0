@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 
 @Component({
@@ -42,4 +43,5 @@ export class EmployeeListComponent {
   redirectToAddEmployee() : void{
     this.router.navigate(['/employee-list/add-employee'])
   }
+  toppings = new FormControl('');
 }
