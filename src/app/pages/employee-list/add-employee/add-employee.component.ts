@@ -18,7 +18,21 @@ import { CustomizerSettingsService } from '../../../customizer-settings/customiz
 @Component({
   selector: 'app-add-employee',
   standalone: true,
-  imports: [RouterLink, MatCardModule, MatInputModule, MatFormFieldModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, FormsModule, ReactiveFormsModule, NgxMatTimepickerModule, MatIconModule, MatButtonModule, MatMenuModule, ReactiveFormsModule, NgIf, ],
+  imports: [RouterLink, 
+    MatCardModule, 
+    MatInputModule, 
+    MatFormFieldModule, 
+    MatSelectModule, 
+    MatDatepickerModule, 
+    MatNativeDateModule, 
+    FormsModule, 
+    ReactiveFormsModule, 
+    NgxMatTimepickerModule, 
+    MatIconModule, 
+    MatButtonModule, 
+    MatMenuModule, 
+    ReactiveFormsModule, 
+    NgIf, ],
   templateUrl: './add-employee.component.html',
   styleUrl: './add-employee.component.scss'
 })

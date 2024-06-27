@@ -196,4 +196,7 @@ export class ClientListComponent implements OnInit {
       console.log('Form is invalid. Please check the fields.');
     }
   }
+  redirectToDesignerSheet() : void{
+    this.router.navigate(['/client-list/designer-sheet'])
+  }
 }
