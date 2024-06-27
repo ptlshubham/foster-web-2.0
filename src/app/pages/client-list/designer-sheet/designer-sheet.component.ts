@@ -33,9 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatCheckboxModule,
     MatTooltipModule,
     MatFormFieldModule,
-    MatInputModule, 
-    MatSelectModule, 
-    MatDatepickerModule, 
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
     HttpClientModule,
     MatNativeDateModule],
   templateUrl: './designer-sheet.component.html',
@@ -43,86 +43,38 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class DesignerSheetComponent {
 
-  displayedColumns: string[] = ['#', 'profile' , 'Name', 'clientname' , 'totalclients'];
+  displayedColumns: string[] = ['#', 'Name', 'clientname', 'totalclients'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource = new MatTableDataSource<any>([]);
 
-  clientsData: any = [];
-  roleWiseData: any = [];
   comapanyRole: any = localStorage.getItem('Role');
   loading: boolean = true; // Initialize as true to show loader initially
 
 
-constructor(
-  public themeService: CustomizerSettingsService,
-  private router: Router,
-  private companyService: CompanyService
+  constructor(
+    public themeService: CustomizerSettingsService,
+    private router: Router,
+    private companyService: CompanyService
 
-){
-  this.getClientsDetails();
+  ) {
+    this.getClientsDetailsForSheet();
 
-}
+  }
   redirectToclientlist(): void {
     this.router.navigate(['/client-list']);
   }
-
-  getClientsDetails() {
-    this.companyService.getAllClientDetailsData().subscribe((res: any) => {
-      let pendingRequests = res.length;
-
-      if (pendingRequests === 0) {
-        this.clientsData = res;
-        this.getEmployeeWiseData();
-        return;
-      }
-      res.forEach((element: any, index: number) => {
-        const mediaArray = element.media.split(',').map((item: any) => item.trim());
-        res[index].mediaArray = mediaArray;
-
-        this.companyService.getAssignedEmpDetailsById(element.id).subscribe((data: any) => {
-          pendingRequests--;
-
-          if (pendingRequests === 0) {
-            this.clientsData = res;
-            this.getEmployeeWiseData();
-          }
-        });
+  getClientsDetailsForSheet() {
+    this.companyService.getAllDesignerSheetList().subscribe((data: any) => {
+      data.forEach((row: any, index: number) => {
+        row.index = index + 1;
+        row.clients = row.clientnames.split(',').map((client: string) => client.trim());
       });
+      setTimeout(() => {
+        // Replace this with actual data fetching logic
+        this.dataSource.data = data;
+        debugger
+        this.loading = false; // Set loading to false once data is fetched
+      }, 2000);
     });
-  }
-
-  getEmployeeWiseData() {
-    const eid = Number(localStorage.getItem('Eid')); // Convert eid to a number
-    this.roleWiseData = []; // Initialize or clear the roleWiseData array
-
-    // Helper function to filter clients by assigned roles
-    const filterByRole = (roleKey: string) => {
-      this.clientsData.forEach((element: any) => {
-        element[roleKey].forEach((assigned: any) => {
-          if (assigned.empid === eid) {
-            this.roleWiseData.push(element);
-          }
-        });
-      });
-    };
-
-    // Determine the role and filter accordingly
-    if (this.comapanyRole === 'Designer') {
-      filterByRole('assignedDesigners');
-    } else if (this.comapanyRole === 'Manager' || this.comapanyRole === 'SubAdmin') {
-      filterByRole('assignedManagers');
-    }
-
-    // Assign index to each element and set collection size
-    const dataToProcess = this.roleWiseData.length ? this.roleWiseData : this.clientsData;
-    dataToProcess.forEach((element: any, index: number) => {
-      element.index = index + 1;
-    });
-  
-    setTimeout(() => {
-      // Replace this with actual data fetching logic
-      this.dataSource.data = dataToProcess;
-      this.loading = false; // Set loading to false once data is fetched
-    }, 2000);
   }
 }
