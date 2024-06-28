@@ -1,34 +1,54 @@
-import { Component } from '@angular/core';
+import { CommonModule, NgIf } from '@angular/common';
+import { Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterLink } from '@angular/router';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { AddEmployeeComponent } from './add-employee/add-employee.component';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { CompanyService } from '../../core/services/company.service';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
-import { CoreModule } from '../../core/core.module';
+import { MatPaginator } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { FormControl } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CoreModule } from '../../core/core.module';
+import { CompanyService } from '../../core/services/company.service';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [RouterLink, MatCardModule, MatButtonModule, MatMenuModule, MatTooltipModule, MatIconModule,CoreModule,HttpClientModule,CommonModule],
+  imports: [
+    RouterLink, 
+    MatCardModule, 
+    MatButtonModule, 
+    MatMenuModule, MatTooltipModule, MatIconModule,CoreModule,HttpClientModule,CommonModule, MatProgressSpinnerModule, MatCardModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })
 export class EmployeeListComponent {
+  displayedColumns: string[] = ['#', 'Name', 'clientname', 'totalclients'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource = new MatTableDataSource<any>([]);
+
   staffData: any = [];
   staffDataTable: any = [];
-  collectionSize = 0;
+  roleWiseData: any = [];
+  companyRole: any = localStorage.getItem('Role');
   filterEmployeeList: any = [];
-  paginateData: any = [];
-  page = 1;
-  pageSize = 50;
+  loading: boolean = true;
 
   constructor(
     private router: Router,
@@ -47,13 +67,9 @@ export class EmployeeListComponent {
       for (let i = 0; i < this.staffDataTable.length; i++) {
         this.staffDataTable[i].index = i + 1;
       }
-      this.collectionSize = this.staffDataTable.length;
-      this.filterEmployeeList = [...this.staffDataTable];
-      this.getPagintaion();
+      this.dataSource.data = [...this.staffDataTable];
+      debugger;
     })
-  }
-  getPagintaion() {
-    this.paginateData = this.filterEmployeeList.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   // isToggled
   isToggled = false;
@@ -71,5 +87,4 @@ export class EmployeeListComponent {
   redirectToAddEmployee() : void{
     this.router.navigate(['/employee-list/add-employee'])
   }
-  toppings = new FormControl('');
 }
