@@ -19,7 +19,7 @@ import { Validators, FormGroup, FormBuilder, ReactiveFormsModule } from '@angula
 import { CompanyService } from '../../core/services/company.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-client-list',
@@ -49,7 +49,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 })
 export class ClientListComponent implements OnInit {
 
-  displayedColumns: string[] = ['#', 'Name', 'businesstype', 'Manager', 'Designer', 'post', 'reel', 'story', 'extra', 'media', 'action'];
+  displayedColumns: string[] = ['#', 'Name', 'Manager', 'Designer', 'post', 'reel', 'story', 'extra', 'media', 'action'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource = new MatTableDataSource<any>([]);
 
@@ -168,7 +168,7 @@ export class ClientListComponent implements OnInit {
     dataToProcess.forEach((element: any, index: number) => {
       element.index = index + 1;
     });
-  
+
     setTimeout(() => {
       // Replace this with actual data fetching logic
       this.dataSource.data = dataToProcess;
@@ -196,7 +196,7 @@ export class ClientListComponent implements OnInit {
       console.log('Form is invalid. Please check the fields.');
     }
   }
-  redirectToDesignerSheet() : void{
+  redirectToDesignerSheet(): void {
     this.router.navigate(['/client-list/designer-sheet'])
   }
 }
