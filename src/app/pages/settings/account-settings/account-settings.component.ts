@@ -10,7 +10,13 @@ import { CustomizerSettingsService } from '../../../customizer-settings/customiz
 @Component({
   selector: 'app-account-settings',
   standalone: true,
-  imports: [RouterLink, MatButtonModule, MatInputModule, MatFormFieldModule, MatSelectModule, FileUploadModule],
+  imports: [RouterLink, 
+            MatButtonModule, 
+            MatInputModule, 
+            MatFormFieldModule, 
+            MatSelectModule, 
+            FileUploadModule
+        ],
   templateUrl: './account-settings.component.html',
   styleUrl: './account-settings.component.scss'
 })

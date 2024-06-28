@@ -1,0 +1,28 @@
+.switch-btn {
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 30px;
+    display: inline-block;
+    border: 1px solid #ededed;
+    background-color: transparent;
+
+    &::before {
+        left: 4px;
+        width: 22px;
+        content: "";
+        bottom: 3px;
+        height: 22px;
+        border-radius: 50%;
+        position: absolute;
+        background-color: #dad9d9;
+        transition: var(--transition);
+    }
+    &.active {
+        &::before {
+            left: 31px;
+            background-color: var(--daxaColor) !important;
+        }
+    }
+}

@@ -10,7 +10,12 @@ import { CustomizerSettingsService } from '../../../customizer-settings/customiz
 @Component({
   selector: 'app-change-password',
   standalone: true,
-  imports: [RouterLink, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+  imports: [RouterLink, 
+            MatButtonModule, 
+            MatFormFieldModule, 
+            MatInputModule, 
+            MatSelectModule
+  ],
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.scss'
 })

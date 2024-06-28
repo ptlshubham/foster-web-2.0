@@ -12,7 +12,14 @@ import { DashboardSettingsComponent } from './dashboard-settings/dashboard-setti
   selector: 'app-settings',
   standalone: true,
   imports: [
-    RouterLink, MatCardModule, MatTabsModule, DatePipe, ChangePasswordComponent,AccountSettingsComponent,DashboardSettingsComponent],
+    RouterLink, 
+    MatCardModule, 
+    MatTabsModule, 
+    DatePipe, 
+    ChangePasswordComponent,
+    AccountSettingsComponent,
+    DashboardSettingsComponent
+  ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss'
 })
