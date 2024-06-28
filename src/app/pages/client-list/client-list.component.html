@@ -163,8 +163,10 @@
                 showFirstLastButtons></mat-paginator>
         </div>
         <ng-template #loader>
-            <div class="loader-container">
-                <mat-spinner></mat-spinner>
+            <div class="loader-container"> 
+                <mat-card-content style="position: relative; left: 44%">
+                    <mat-spinner></mat-spinner>
+                </mat-card-content>
             </div>
         </ng-template>
     </mat-card-content>

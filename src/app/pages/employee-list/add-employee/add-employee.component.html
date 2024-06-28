@@ -21,20 +21,28 @@
                         <h5>Role</h5>
                         <mat-form-field>
                             <mat-label>Enter Role</mat-label>
-                            <mat-select>
-                                <mat-option value="Steak">Manager</mat-option>
-                                <mat-option value="Pizza">Designer</mat-option>
-                                <mat-option value="Tacos">Developer</mat-option>
-                                <mat-option value="Tacos">SubAdmin</mat-option>
+                            <mat-select formControlName="role">
+                                <mat-option value="manager">Manager</mat-option>
+                                <mat-option value="designer">Designer</mat-option>
+                                <mat-option value="developer">Developer</mat-option>
+                                <mat-option value="subadmin">SubAdmin</mat-option>
                             </mat-select>
                         </mat-form-field>
+                        <div class="error text-danger"
+                            *ngIf="authForm.get('role')!.hasError('required') && authForm.get('role')!.touched">
+                            This field is required.
+                        </div>
                     </div>
                     <div class="col-md-6 col-xxl-4">
                         <h5>Name</h5>
                         <mat-form-field>
                             <mat-label>Enter Name</mat-label>
-                            <input matInput formControlName="">
+                            <input matInput formControlName="name">
                         </mat-form-field>
+                        <div class="error text-danger"
+                            *ngIf="authForm.get('name')!.hasError('required') && authForm.get('name')!.touched">
+                            This field is required.
+                        </div>
                     </div>
                     <div class="col-md-6 col-xxl-4">
                         <h5>Contact Number</h5>
@@ -42,8 +50,12 @@
                             <mat-label>
                                 Enter Contact Number
                             </mat-label>
-                            <input matInput placeholder="E.g. +123 452183">
+                            <input matInput placeholder="E.g. +123 452183" formControlName="contact">
                         </mat-form-field>
+                        <div class="error text-danger"
+                            *ngIf="authForm.get('contact')!.hasError('required') && authForm.get('contact')!.touched">
+                            This field is required.
+                        </div>
                     </div>
                 </div>
                 <div class="row " style="margin-top: 20px;">
@@ -53,8 +65,12 @@
                             <mat-label>
                                 Enter email address
                             </mat-label>
-                            <input matInput type="email">
+                            <input matInput type="email" formControlName="mail">
                         </mat-form-field>
+                        <div class="error text-danger"
+                            *ngIf="authForm.get('mail')!.hasError('required') && authForm.get('mail')!.touched">
+                            This field is required.
+                        </div>
                     </div>
                     <div class="col-md-6 col-xxl-4">
                         <h5>Password</h5>
@@ -84,10 +100,14 @@
                         <h5>Birthday Date</h5>
                         <mat-form-field appearance="fill">
                             <mat-label>MM/DD/YYYY</mat-label>
-                            <input matInput [matDatepicker]="picker2">
+                            <input matInput [matDatepicker]="picker2" formControlName="date">
                             <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                             <mat-datepicker #picker2></mat-datepicker>
                         </mat-form-field>
+                        <div class="error text-danger"
+                            *ngIf="authForm.get('date')!.hasError('required') && authForm.get('date')!.touched">
+                            This field is required.
+                        </div>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 20px;">
