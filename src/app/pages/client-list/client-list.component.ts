@@ -199,4 +199,7 @@ export class ClientListComponent implements OnInit {
   redirectToDesignerSheet(): void {
     this.router.navigate(['/client-list/designer-sheet'])
   }
+  redirectToAddClients(): void {
+    this.router.navigate(['/client-list/add-client'])
+  }
 }

@@ -26,6 +26,7 @@ import { AddEmployeeComponent } from './pages/employee-list/add-employee/add-emp
 import { DesignerSheetComponent } from './pages/client-list/designer-sheet/designer-sheet.component';
 import { TaskManagementComponent } from './pages/task-management/task-management.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { AddClientComponent } from './pages/client-list/add-client/add-client.component';
 
 
 export const routes: Routes = [
@@ -39,6 +40,7 @@ export const routes: Routes = [
     {path: 'daily-work', component: DailyWorkComponent},
     {path: 'social-media', component: SocialMediaComponent},
     {path: 'client-list', component: ClientListComponent},
+    {path: 'client-list/add-client', component: AddClientComponent},
     {path: 'client-list/designer-sheet', component: DesignerSheetComponent},
     {path: 'employee-list', component: EmployeeListComponent},
     {path: 'employee-list/add-employee', component: AddEmployeeComponent},
