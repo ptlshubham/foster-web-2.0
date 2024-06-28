@@ -49,13 +49,21 @@ export class AddEmployeeComponent {
       private router: Router,
       public themeService: CustomizerSettingsService
   ) {
-      this.authForm = this.fb.group({
-          email: ['', [Validators.required, Validators.email]],
-          password: ['', [Validators.required, Validators.minLength(8)]],
-      });
-      this.themeService.isToggled$.subscribe(isToggled => {
-          this.isToggled = isToggled;
-      });
+
+  }
+
+  ngOnInit(): void {
+    this.authForm = this.fb.group({
+      name: ['', Validators.required],
+      role: ['', Validators.required],
+      mail: ['', Validators.required, Validators.email],
+      contact: ['', Validators.required],
+      date: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
+    this.themeService.isToggled$.subscribe(isToggled => {
+      this.isToggled = isToggled;
+    });
   }
 
 // Dark Mode
