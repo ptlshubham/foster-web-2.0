@@ -9,32 +9,41 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router, RouterLink } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
-import { FormControl } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CoreModule } from '../../core/core.module';
 import { CompanyService } from '../../core/services/company.service';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
   imports: [
-    RouterLink, 
-    MatCardModule, 
-    MatButtonModule, 
-    MatMenuModule, MatTooltipModule, MatIconModule,CoreModule,HttpClientModule,CommonModule, MatProgressSpinnerModule, MatCardModule,
+    MatCardModule,
+    MatMenuModule,
+    MatButtonModule,
+    RouterLink,
+    MatTableModule,
+    CommonModule,
     MatCheckboxModule,
+    MatTooltipModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule],
+    MatNativeDateModule,
+    MatIcon,
+    ReactiveFormsModule,
+    CoreModule,
+    HttpClientModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })
@@ -84,7 +93,7 @@ export class EmployeeListComponent {
     this.themeService.toggleRTLEnabledTheme();
   }
 
-  redirectToAddEmployee() : void{
+  redirectToAddEmployee(): void {
     this.router.navigate(['/employee-list/add-employee'])
   }
 }
